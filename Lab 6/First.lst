@@ -1,0 +1,27 @@
+
+as12, an absolute assembler for Motorola MCU's, version 1.2h
+
+                        ; First.asm
+                        
+                        ;Author:                J.McCabe
+                        ;Student Number:         040-636-196
+                        ;Date:                  Oct. 10 2018
+                        ;
+                        ;Purpose:               Add the following values: $25 + $37 - $1
+                        ;
+                        
+1000                                    org     $1000           ;Set current location to start of RAM
+1000 25                 p:              db      $25             ;First addend is at location p
+1001 37                 q:              db      $37             ;Second addend is at location q
+1002                    r:              ds      1               ;Sum will be stored at location r
+                        
+2000                                    org     $2000           ;Set current location to start in RAM
+2000 b6 10 00                           ldaa    p               ;load value at p into accumulator a
+2003 bb 10 01                           adda    q               ;add value at q into accumulator a
+2006 43                                 deca                    ;subtract one from the value in a
+2007 7a 10 02                           staa    r               ;store accumulator a at location r
+                                        end
+
+Executed: Wed Oct 17 10:28:39 2018
+Total cycles: 13, Total bytes: 12
+Total errors: 0, Total warnings: 0

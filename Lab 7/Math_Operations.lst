@@ -1,0 +1,42 @@
+
+as12, an absolute assembler for Motorola MCU's, version 1.2h
+
+                        ; Math_Operations.asm
+                        ;
+                        ; Author:         James McCabe
+                        ; Student Number: 040-636-196
+                        ; Date:           24 Oct 2018
+                        ;
+                        ; Purpose:        To Gain Experience with Assembly Language instructions
+                        ;                 by correcting the code and then stepping through it with
+                        ;                 the Dragon 12+ Student version simulator and recording the
+                        ;                 values in the registers and memory locations AFTER the
+                        ;                 instruction has been executed.
+                        ;                 Note that this code is purposely NOT documented.
+                        
+                        ; Program Constants
+2000                    STACK   equ     $2000
+                        
+1000                    	org	$1000       ; Data starts at $1000
+1000 17 91              MyArray db      $17, $91
+1002                    Result  ds      2
+                        
+2000                            org     $2000           ; Program Code starts at $2000
+2000 cf 20 00           Start   lds     #STACK          ; Setup the stack
+2003 c7                 	clrb
+2004 86 62                      ldaa    #$62
+2006 c6 3e                      ldab    #62
+2008 bb 10 00                   adda    MyArray
+200b 7a 10 02                   staa    Result
+200e 7b 10 03                   stab    Result+1
+2011 b6 10 03                   ldaa    Result+1
+2014 f6 10 02                   ldab    Result
+2017 52                         incb
+2018 86 55                      ldaa    #%01010101
+201a 7c 10 02                   std     Result
+201d 3f                         swi
+                                end
+
+Executed: Wed Oct 24 10:00:12 2018
+Total cycles: 48, Total bytes: 32
+Total errors: 0, Total warnings: 0
